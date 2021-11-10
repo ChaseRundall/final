@@ -146,14 +146,15 @@ def create_app(test_config=None):
         score = session['score']
         print('Final score: ', score)
         if score < 6:
-            last_scene = render_template('end_screen.html', ending_text = 'Sorry, you got in trouble anyway...')
+            picture_url = 'https://raw.githubusercontent.com/ChaseRundall/Grundall-s/main/download-1.jpg'
+            last_scene = render_template('end_screen.html', ending_text = '')
         elif score == 7 or score == 9 or score == 11:
-            last_scene = render_template('end_screen.html', ending_text = 'I have no idea but you escaped!!!!')
+            last_scene = render_template('end_screen.html', ending_text = '')
         else:
-            last_scene = render_template('end_screen.html', ending_text = "Uhhh.. You just got yourself suspended...")
+            last_scene = render_template('end_screen.html', ending_text = "")
 
         print("##################################")
-        return last_scene
+        return render_template('end_screen.html', ending_text - 'RESUTLS', picture = picture_url,)
     sess = Session()
     sess.init_app(app)
 
