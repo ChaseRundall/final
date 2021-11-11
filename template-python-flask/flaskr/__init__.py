@@ -69,6 +69,10 @@ def create_app(test_config=None):
                 session['score'] = session['score']+3
                 print('User should have selected c')
 
+            elif request.form.get("submit_d"):
+                session['score'] = session['score']+4
+                print('User should have selected d')
+
             else:
                 print("MAJOR ISSUE!! User choice was neither a,b, or c")
                 pass
@@ -140,74 +144,29 @@ def create_app(test_config=None):
         return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], d_text = session['choice_d_text'], pg_u_goto_after_clicked = next_page) 
         #######################################################################
     #Classic Mode End Screen
-    @app.route("/end_screen/", methods=['POST'])
+    @app.route("/end_screen", methods=['POST'])
     def ending():
-        button_clicking('', '', '', '', 'Answered Q5 and below will be the final score')  
+        button_clicking('', '', '', '', '','Answered Q5 and below will be the final score')  
         score = session['score']
         print('Final score: ', score)
-        if score < 6:
+        if score == 3:
             picture_url = 'https://raw.githubusercontent.com/ChaseRundall/Grundall-s/main/download-1.jpg'
-            last_scene = render_template('end_screen.html', ending_text = '')
-        elif score == 7 or score == 9 or score == 11:
-            last_scene = render_template('end_screen.html', ending_text = '')
+        elif score == 4 or score == 5 or score == 6:
+            picture_url = 'https://raw.githubusercontent.com/ChaseRundall/final/main/download-3.jpg'
+        elif score == 7 or score == 8 or score == 9:
+           picture_url = 'https://raw.githubusercontent.com/ChaseRundall/final/main/download-2.jpg'
+        elif score == 10 or score == 11 or score == 12:
+            picture_url = 'https://raw.githubusercontent.com/ChaseRundall/final/main/download.jpg'
         else:
-            last_scene = render_template('end_screen.html', ending_text = "")
+            print("Error in score")
 
         print("##################################")
-        return render_template('end_screen.html', ending_text - 'RESUTLS', picture = picture_url,)
+        return render_template('end_screen.html', ending_text = 'RESUTLS', picture = picture_url)
     sess = Session()
     sess.init_app(app)
 
     return app
 
-'''    #######################################################################
-    #4th Question function
-    @app.route("/classic_mode_q4", methods=['GET','POST'])
-    def fourth_question():
-
-        new_intro_text =  "Mrs. Durbin finds you!? Now what!?"
-        new_a_text = 'RUUUNNNN!!!'
-        new_b_text = 'Smile and wave????'
-        new_c_text = 'Try to make small talk'
-        message = 'User just answered Q3'
-        next_page = '/classic_mode_q5'
-
-        button_clicking(new_intro_text, new_a_text, new_b_text, new_c_text, message)
-        
-    
-        return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], pg_u_goto_after_clicked = next_page) 
-
-    #######################################################################
-    #5th Question function 
-    @app.route("/classic_mode_q5", methods=['GET','POST'])
-    def fifth_question():
-        score = session['score']
-        new_intro_text =  'Someone hands you a squishy and tells you to hide it'
-        new_a_text = 'Ignore them and keep heading to class'
-        new_b_text = "Run to hide it in Mr. Seney's office"
-        new_c_text = 'Take it and head back to the library'
-        message = 'User just answered Q4'
-        next_page = '/end_screen/'
-        
-        button_clicking(new_intro_text, new_a_text, new_b_text, new_c_text, message)
-        return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], pg_u_goto_after_clicked = next_page)
-
-    #######################################################################
-    #Classic Mode End Screen
-    @app.route("/end_screen/", methods=['POST'])
-    def ending():
-        button_clicking('', '', '', '', 'Answered Q5 and below will be the final score')  
-        score = session['score']
-        print('Final score: ', score)
-        if score < 6:
-            last_scene = render_template('end_screen.html', ending_text = 'Sorry, you got in trouble anyway...')
-        elif score == 7 or score == 9 or score == 11:
-            last_scene = render_template('end_screen.html', ending_text = 'I have no idea but you escaped!!!!')
-        else:
-            last_scene = render_template('end_screen.html', ending_text = "Uhhh.. You just got yourself suspended...")
-
-        print("##################################")
-        return last_scene'''
 #######################################################################
 #Classic mode ended
 #######################################################################
