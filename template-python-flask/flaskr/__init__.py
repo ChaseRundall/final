@@ -84,6 +84,7 @@ def create_app(test_config=None):
             session['chocie_d_text'] = d_text
             print('message: ', print_message_for_debug)
             print('new score: ', session['score'])
+            print('hey', session['chocie_d_text'])
             
         else:
             print("MAJOR ERROR IN BUTTON CLICK FUNCTION IF NOT GOING INTO THE FIRST ROUND")
@@ -104,7 +105,6 @@ def create_app(test_config=None):
 
         message = 'Classic Mode was selected'
         next_page = '/classic_mode_q2'
-
         button_clicking(session['intro_text'], session['choice_a_text'], session['choice_b_text'], session['choice_c_text'], session['choice_d_text'], message)
         
         return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], d_text = session['choice_d_text'], pg_u_goto_after_clicked = next_page) 
@@ -115,16 +115,18 @@ def create_app(test_config=None):
     def second_question():
 
         new_intro_text =  "Question 2, What Is Your Favorite Amusment Park Ride "
-        new_a_text = "Roller Coaster!"
+        new_a_text = "Roller Coaster!!!!!"
         new_b_text = 'Ferris Wheel'
         new_c_text = 'I do not like amusment parks.'
-        new_d_text = 'asf;adf;jas;'
+        new_d_text = 'Otcv vxvfdsvsdv'
+        
 
         message = 'User just answered Q1'
         next_page = '/classic_mode_q3'
 
         button_clicking(new_intro_text, new_a_text, new_b_text, new_c_text, new_d_text, message)
-        return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], d_text = session['choice_d_text'], pg_u_goto_after_clicked = next_page ) 
+        
+        return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], d_text = 'affasj;jodfs', pg_u_goto_after_clicked = next_page ) 
       
     #######################################################################
     #3rd Question function
