@@ -84,7 +84,6 @@ def create_app(test_config=None):
             session['chocie_d_text'] = d_text
             print('message: ', print_message_for_debug)
             print('new score: ', session['score'])
-            print('hey', session['chocie_d_text'])
             
         else:
             print("MAJOR ERROR IN BUTTON CLICK FUNCTION IF NOT GOING INTO THE FIRST ROUND")
@@ -118,7 +117,7 @@ def create_app(test_config=None):
         new_a_text = "Roller Coaster!!!!!"
         new_b_text = 'Ferris Wheel'
         new_c_text = 'I do not like amusment parks.'
-        new_d_text = 'Otcv vxvfdsvsdv'
+        new_d_text = 'Other'
         
 
         message = 'User just answered Q1'
@@ -126,7 +125,7 @@ def create_app(test_config=None):
 
         button_clicking(new_intro_text, new_a_text, new_b_text, new_c_text, new_d_text, message)
         
-        return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], d_text = 'affasj;jodfs', pg_u_goto_after_clicked = next_page ) 
+        return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], d_text = 'Other', pg_u_goto_after_clicked = next_page ) 
       
     #######################################################################
     #3rd Question function
@@ -143,7 +142,7 @@ def create_app(test_config=None):
 
         
         button_clicking(new_intro_text, new_a_text, new_b_text, new_c_text, new_d_text, message)
-        return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], d_text = session['choice_d_text'], pg_u_goto_after_clicked = next_page) 
+        return render_template('classic_mode.html', intro = session['intro_text'], a_text = session['choice_a_text'], b_text = session['choice_b_text'], c_text = session['choice_c_text'], d_text = new_d_text, pg_u_goto_after_clicked = next_page) 
         #######################################################################
     #Classic Mode End Screen
     @app.route("/end_screen", methods=['POST'])
